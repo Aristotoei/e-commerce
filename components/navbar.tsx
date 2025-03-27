@@ -1,9 +1,15 @@
 import Image from 'next/image'
 
-export const Navbar = () => {
+interface NavbarProps {
+  searchTerm: string;
+  setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export const Navbar: React.FC<NavbarProps>  = ({ searchTerm, setSearchTerm }) => {
+
   return (
     <nav>
-      <div className='lg:flex lg:justify-between lg:pt-8 lg:pb-6'>
+      <div className='lg:flex lg:justify-between lg:pt-4 lg:pb-3'>
         <div className='lg:basis-3/24 lg:text-4xl text-center text-[#023a22] font-bold'>Rungthavorn</div>
         <div className='lg:flex lg:justify-center lg:items-center lg:basis-3/24 lg:gap-2 text-[#023a22]'>
           <div>
@@ -32,10 +38,13 @@ export const Navbar = () => {
           <div className='lg:grow'>
             <input
               className='lg:w-full focus:outline-none'
-              type='text' 
+              type='text'
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
               placeholder='Search your products, Categories or Brands'
               >
             </input>
+            
           </div>
         </div>
         <div className='lg:flex lg:basis-2/24 gap-2 justify-end'>
@@ -60,7 +69,7 @@ export const Navbar = () => {
         </div>
       </div>
       <hr className='border border-gray-300'></hr>
-      <div className='lg:flex lg:pt-8 lg:pb-8 text-[#023a22] lg:text-lg'>
+      <div className='lg:flex lg:pt-4 lg:pb-4 text-[#023a22] lg:text-lg'>
         <ul className='lg:flex lg:gap-4 lg:grow'>
           <div className='flex items-center lg:p-1'>
             <li className='cursor-pointer dropdown'>Products

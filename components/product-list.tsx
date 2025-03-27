@@ -5,9 +5,17 @@ import { ProductCard } from './product-card';
 interface Product {
   id: number | number;
   title: string;
+  thumbnail: string;
+  description: string;
+  weight: string
+  rating: string;
 }
 
-export const ProductList = () => {
+interface ProductListProps {
+  searchTerm: string;
+}
+
+export const ProductList: React.FC<ProductListProps> = ({ searchTerm }) => {
   const [products, setProduct] = useState<Product[]>([]);
 
   const fetchProducts = async () => {
@@ -29,19 +37,20 @@ export const ProductList = () => {
     fetchProducts();
   }, []);
 
-  const [searchTerm, setSearchTerm] = useState<string>("");
-
   const filteredProduct = products.filter((product) => {
-    const term = searchTerm.toLocaleLowerCase();
-    const nameMatch = product.title.toLocaleLowerCase().includes(term);
-    return nameMatch;
+    const term = searchTerm.toLowerCase();
+    const nameMatch = product.title.toLowerCase().includes(term);
+    const descriptionMatch = product.description
+      ? product.description.toLowerCase().includes(term)
+      : false
+    return nameMatch || descriptionMatch;
   })
-  useEffect(() => {setSearchTerm("green")} ,[]);
+
   console.log(filteredProduct);
 
   return (
     <div>
-      <div className='text-[#023a22] font-bold lg:text-4xl lg:mb-10 lg:mt-10'>All Products</div>
+      <div className='text-[#023a22] font-bold lg:text-4xl lg:mb-5 lg:mt-5'>All Products</div>
       <div className='flex text-[#023a22] lg:text-lg'>
         <div className='flex lg:gap-2 grow'>
           <div className='bg-[#023a22] text-white rounded-xl lg:p-2'>
