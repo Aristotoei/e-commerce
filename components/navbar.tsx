@@ -1,11 +1,22 @@
 import Image from 'next/image'
+import { SearchBox } from './search-box';
 
+interface Product {
+  id: number | number;
+  title: string;
+  thumbnail: string;
+  description: string;
+  stock: number;
+  rating: number;
+  price:number;
+}
 interface NavbarProps {
   searchTerm: string;
   setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
+  filteredProduct: Product[];
 }
 
-export const Navbar: React.FC<NavbarProps>  = ({ searchTerm, setSearchTerm }) => {
+export const Navbar  = ({ searchTerm, setSearchTerm, filteredProduct }: NavbarProps) => {
 
   return (
     <nav>
@@ -44,7 +55,7 @@ export const Navbar: React.FC<NavbarProps>  = ({ searchTerm, setSearchTerm }) =>
               placeholder='Search your products, Categories or Brands'
               >
             </input>
-            
+            <SearchBox searchTerm={searchTerm} filteredProduct={filteredProduct}/>
           </div>
         </div>
         <div className='lg:flex lg:basis-2/24 gap-2 justify-end'>
@@ -71,8 +82,8 @@ export const Navbar: React.FC<NavbarProps>  = ({ searchTerm, setSearchTerm }) =>
       <hr className='border border-gray-300'></hr>
       <div className='lg:flex lg:pt-4 lg:pb-4 text-[#023a22] lg:text-lg'>
         <ul className='lg:flex lg:gap-4 lg:grow'>
-          <div className='flex items-center lg:p-1'>
-            <li className='cursor-pointer dropdown'>Products
+          <div className='flex cursor-pointer dropdown items-center lg:p-1'>
+            <li>Products
               <div className='dropdown-container'>
                 <div>Product1</div>
                 <div>Product2</div>
@@ -81,29 +92,19 @@ export const Navbar: React.FC<NavbarProps>  = ({ searchTerm, setSearchTerm }) =>
                 <div>Product5</div>
               </div>
             </li>
-            <Image
-              src='arrow_down.svg'
-              alt='arrow-down'
-              width={24}
-              height={24}
-            />
+            <span className="material-symbols-outlined">keyboard_arrow_down</span>
           </div>
           <li className='cursor-pointer lg:p-1'>Whats new</li>
           <li className='cursor-pointer lg:p-1'>Delivery</li>
-          <div className='flex items-center lg:p-1'>
-            <li className='cursor-pointer dropdown'>Deals & Offers
+          <div className='flex cursor-pointer dropdown items-center lg:p-1'>
+            <li>Deals & Offers
               <div className='dropdown-container'>
                 <div>Deal & Offer 1</div>
                 <div>Deal & Offer 2</div>
                 <div>Deal & Offer 3</div>
               </div>
             </li>
-            <Image
-              src='arrow_down.svg'
-              alt='arrow-down'
-              width={24}
-              height={24}
-            />
+            <span className="material-symbols-outlined">keyboard_arrow_down</span>
           </div>
           <li className='cursor-pointer lg:p-1'>Help & Support</li>
         </ul>

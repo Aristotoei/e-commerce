@@ -3,8 +3,9 @@ interface Product {
   id: string | number;
   title: string;
   thumbnail: string;
-  weight: string;
-  rating: string;
+  stock: number;
+  rating: number;
+  price:number;
 }
 
 interface Probs {
@@ -14,10 +15,10 @@ interface Probs {
 export const ProductCard = ({ products }: Probs) => {
   // console.log(products);
   return (
-    <div className='lg:grid grid-cols-4 gap-4'>
+    <div className='grid lg:grid-cols-4 lg:gap-10 lg:mt-10'>
       {products.map((product) => (
-        <div key={product.id}>
-          <div>
+        <div className='bg-gray-100 rounded-xl lg:p-4' key={product.id}>
+          <div className='justify-self-center'>
             <Image 
               src={product.thumbnail}
               alt={product.title}
@@ -25,10 +26,23 @@ export const ProductCard = ({ products }: Probs) => {
               height={256}
             />
           </div>
-          <div>
-            <h1>{product.title}</h1>
-            <div className='flex justify-between'>
-              <p className='grow'>{product.weight}</p><p>{product.rating}</p>
+          <div className='text-[#023a22]'>
+            <h1 className='lg:text-2xl font-medium'>{product.title}</h1>
+            <div className='flex justify-between lg:text-xl lg:pt-3'>
+              <p className='grow text-gray-400'>Stock: {product.stock}</p>
+              <p className='flex items-center'><span className="material-symbols-outlined text-[#fc7209]">star</span>({(product.rating).toFixed(1)}/5)</p>
+            </div>
+            <div className='flex justify-between items-center lg:mt-4'>
+              <p className='font-semibold lg:text-3xl'>${product.price}</p>
+              <div className='bg-[#023a22] text-white rounded-full flex justify-center items-center cursor-pointer lg:w-[40px] lg:h-[40px]'>
+                <Image 
+                  className='w-3/4 h-3/4'
+                  src='add.svg'
+                  alt='add'
+                  width={24}
+                  height={24}
+                />
+              </div>
             </div>
           </div>
         </div>
