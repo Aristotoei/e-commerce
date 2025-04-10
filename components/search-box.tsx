@@ -10,19 +10,19 @@ interface Product {
   price:number;
 }
 
-interface Probs {
+interface Props {
   searchTerm: string;
   filteredProduct: Product[];
 }
 
-export const SearchBox = ({ searchTerm, filteredProduct }: Probs) => {
+export const SearchBox = ({ searchTerm, filteredProduct }: Props) => {
   return (
     <div className='lg:w-full relative'>
       {searchTerm != '' && (
         <div className='bg-gray-100 absolute top-5 w-full rounded-xl shadow-xl'>
           {filteredProduct.map((product) => (
-            <>
-              <div className='flex justify-between items-center lg:pr-4' key={product.id}>
+            <div key={product.id}>
+              <div className='flex justify-between items-center lg:pr-4'>
                 <span className='flex items-center lg:pb-2 lg:pt-2'>
                   <Image 
                     src={product.thumbnail}
@@ -46,7 +46,7 @@ export const SearchBox = ({ searchTerm, filteredProduct }: Probs) => {
                 </span>
               </div>
               <hr className='text-gray-300 lg:ml-4 lg:mr-4' style={{borderWidth: '1px'}}/>
-            </>
+            </div>
           ))}
         </div>
       )}

@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 interface Product {
   id: string | number;
   title: string;
@@ -8,23 +9,25 @@ interface Product {
   price:number;
 }
 
-interface Probs {
+interface Props {
   products: Product[];
 }
 
-export const ProductCard = ({ products }: Probs) => {
+export const ProductCard = ({ products }: Props) => {
   // console.log(products);
   return (
     <div className='grid lg:grid-cols-4 lg:gap-10 lg:mt-10'>
       {products.map((product) => (
         <div className='bg-gray-100 rounded-xl lg:p-4' key={product.id}>
           <div className='justify-self-center'>
-            <Image 
-              src={product.thumbnail}
-              alt={product.title}
-              width={256}
-              height={256}
-            />
+            <Link href={`/products/${product.id}`}>
+              <Image 
+                src={product.thumbnail}
+                alt={product.title}
+                width={256}
+                height={256}
+              />
+            </Link>
           </div>
           <div className='text-[#023a22]'>
             <h1 className='lg:text-2xl font-medium'>{product.title}</h1>
@@ -34,7 +37,7 @@ export const ProductCard = ({ products }: Probs) => {
             </div>
             <div className='flex justify-between items-center lg:mt-4'>
               <p className='font-semibold lg:text-3xl'>${product.price}</p>
-              <div className='bg-[#023a22] text-white rounded-full flex justify-center items-center cursor-pointer lg:w-[40px] lg:h-[40px]'>
+              <button className='bg-[#023a22] text-white rounded-full flex justify-center items-center cursor-pointer lg:w-[40px] lg:h-[40px]'>
                 <Image 
                   className='w-3/4 h-3/4'
                   src='add.svg'
@@ -42,7 +45,7 @@ export const ProductCard = ({ products }: Probs) => {
                   width={24}
                   height={24}
                 />
-              </div>
+              </button>
             </div>
           </div>
         </div>

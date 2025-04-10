@@ -26,7 +26,7 @@ export const Navbar  = ({ searchTerm, setSearchTerm, filteredProduct }: NavbarPr
           <div>
             <Image
               className='lg:w-[32px]'
-              src='pin_drop.svg'
+              src='/pin_drop.svg'
               alt='pin'
               width={24}
               height={24}
@@ -40,7 +40,7 @@ export const Navbar  = ({ searchTerm, setSearchTerm, filteredProduct }: NavbarPr
         <div className='lg:basis-16/24 lg:flex lg:items-center lg:pl-6 lg:pr-6 lg:gap-2 bg-gray-100 rounded-full'>
           <div className='lg:flex-none'>
             <Image
-            src='search.svg'
+            src='/search.svg'
             alt='search'
             width={24}
             height={24}
@@ -62,7 +62,7 @@ export const Navbar  = ({ searchTerm, setSearchTerm, filteredProduct }: NavbarPr
           <div className='bg-[#023a22] rounded-full flex justify-center items-center lg:w-[48px] lg:h-[48px]'>
             <Image
               className='w-3/4 h-3/4'
-              src='shopping_cart.svg'
+              src='/shopping_cart.svg'
               alt='shopping-cart'
               width={24}
               height={24}
@@ -71,7 +71,7 @@ export const Navbar  = ({ searchTerm, setSearchTerm, filteredProduct }: NavbarPr
           <div className='bg-[#ff720e] rounded-full flex justify-center items-center lg:w-[48px] lg:h-[48px]'>
             <Image
               className='w-3/4 h-3/4'
-              src='account.svg'
+              src='/account.svg'
               alt='account'
               width={24}
               height={24}
@@ -115,7 +115,7 @@ export const Navbar  = ({ searchTerm, setSearchTerm, filteredProduct }: NavbarPr
             <div className='bg-[#ff720e] rounded-full rounded-full flex justify-center items-center lg:w-[24px] lg:h-[24px]'>
               <Image
                 className='w-3/4 h-3/4'
-                src='mail.svg'
+                src='/mail.svg'
                 alt='mail'
                 width={24}
                 height={24}

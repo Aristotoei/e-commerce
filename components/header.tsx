@@ -6,7 +6,7 @@ export const Header = () => {
       <p>Get <span className='text-[#ffe754]'>30% OFF</span> your first order Order</p>
       <div className='lg:pl-5 lg:pr-5'>
         <Image
-          src='star.svg'
+          src='/star.svg'
           alt='star'
           width={24}
           height={24}
