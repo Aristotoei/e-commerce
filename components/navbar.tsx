@@ -1,8 +1,10 @@
 import Image from 'next/image'
 import { SearchBox } from './search-box';
+import { useCartStore } from '@/store/cart-store';
+import Link from 'next/link';
 
 interface Product {
-  id: number | number;
+  id: number;
   title: string;
   thumbnail: string;
   description: string;
@@ -18,10 +20,13 @@ interface NavbarProps {
 
 export const Navbar  = ({ searchTerm, setSearchTerm, filteredProduct }: NavbarProps) => {
 
+  const { items } = useCartStore();
+  const cartCount = items.reduce((acc, item) => acc + item.quantity, 0);
+
   return (
     <nav>
       <div className='lg:flex lg:justify-between lg:pt-4 lg:pb-3'>
-        <div className='lg:basis-3/24 lg:text-4xl text-center text-[#023a22] font-bold'>Rungthavorn</div>
+        <Link href={'/'}><div className='lg:basis-3/24 lg:text-4xl text-center text-[#023a22] font-bold'>Rungthavorn</div></Link>
         <div className='lg:flex lg:justify-center lg:items-center lg:basis-3/24 lg:gap-2 text-[#023a22]'>
           <div>
             <Image
@@ -59,15 +64,20 @@ export const Navbar  = ({ searchTerm, setSearchTerm, filteredProduct }: NavbarPr
           </div>
         </div>
         <div className='lg:flex lg:basis-2/24 gap-2 justify-end'>
-          <div className='bg-[#023a22] rounded-full flex justify-center items-center lg:w-[48px] lg:h-[48px]'>
-            <Image
-              className='w-3/4 h-3/4'
-              src='/shopping_cart.svg'
-              alt='shopping-cart'
-              width={24}
-              height={24}
-            />
-          </div>
+          <Link href={'/checkout'}>
+            <div className='bg-[#023a22] rounded-full flex justify-center items-center relative lg:w-[48px] lg:h-[48px]'>
+              <Image
+                className='w-3/4 h-3/4'
+                src='/shopping_cart.svg'
+                alt='shopping-cart'
+                width={24}
+                height={24}
+              />
+              {cartCount > 0 && (
+                <span className='flex justify-center items-center text-white bg-red-700 absolute right-0 bottom-8 rounded-full lg:w-[24px] lg:h-[24px]'> {cartCount} </span>
+              )}
+            </div>
+          </Link>
           <div className='bg-[#ff720e] rounded-full flex justify-center items-center lg:w-[48px] lg:h-[48px]'>
             <Image
               className='w-3/4 h-3/4'

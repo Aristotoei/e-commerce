@@ -1,7 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { useCartStore } from '@/store/cart-store';
 interface Product {
-  id: string | number;
+  id: number;
   title: string;
   thumbnail: string;
   stock: number;
@@ -15,6 +16,7 @@ interface Props {
 
 export const ProductCard = ({ products }: Props) => {
   // console.log(products);
+  const { addItem } = useCartStore();
   return (
     <div className='grid lg:grid-cols-4 lg:gap-10 lg:mt-10'>
       {products.map((product) => (
@@ -37,7 +39,9 @@ export const ProductCard = ({ products }: Props) => {
             </div>
             <div className='flex justify-between items-center lg:mt-4'>
               <p className='font-semibold lg:text-3xl'>${product.price}</p>
-              <button className='bg-[#023a22] text-white rounded-full flex justify-center items-center cursor-pointer lg:w-[40px] lg:h-[40px]'>
+              <button
+                onClick={() => addItem({...product, quantity: 1})}
+                className='bg-[#023a22] text-white rounded-full flex justify-center items-center cursor-pointer lg:w-[40px] lg:h-[40px]'>
                 <Image 
                   className='w-3/4 h-3/4'
                   src='add.svg'

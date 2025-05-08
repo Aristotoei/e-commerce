@@ -1,7 +1,7 @@
 import Image from 'next/image';
 
 interface Product {
-  id: number | number;
+  id: number;
   title: string;
   thumbnail: string;
   description: string;

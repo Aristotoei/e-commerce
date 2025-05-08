@@ -6,7 +6,7 @@ import { Navbar } from '@/components/navbar'
 import { PromoPic } from '@/components/promo_pic';
 
 interface Product {
-  id: number | number;
+  id: number;
   title: string;
   thumbnail: string;
   description: string;

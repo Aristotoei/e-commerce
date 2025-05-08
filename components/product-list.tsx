@@ -2,7 +2,7 @@
 import { ProductCard } from './product-card';
 
 interface Product {
-  id: string | number;
+  id: number;
   title: string;
   thumbnail: string;
   stock: number;

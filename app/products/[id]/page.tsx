@@ -6,7 +6,7 @@ import { Navbar } from '@/components/navbar'
 import { ProductDetail } from '@/components/product-detail';
 
 interface Product {
-  id: number | number;
+  id: number;
   title: string;
   thumbnail: string;
   images: Array<string>;

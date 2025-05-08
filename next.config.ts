@@ -7,7 +7,7 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'cdn.dummyjson.com',
         port: '',
-        pathname: '/products/images/**',
+        pathname: '/product-images/**',
         search: '',
       },
     ],
